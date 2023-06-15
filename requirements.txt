@@ -1,0 +1,6 @@
+flask==2.2.4
+flask_sqlalchemy
+flask_migrate
+Flask-RESTful
+dataclasses
+requests
