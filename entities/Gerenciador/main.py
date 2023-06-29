@@ -81,10 +81,9 @@ class Transacao(db.Model):
     status = db.Column(db.Integer, unique=False, nullable=False)
 
 
-@app.before_first_request
-def create_tables():
+# push context manually to app
+with app.app_context():
     db.create_all()
-
 
 @app.route("/")
 def index():
@@ -417,3 +416,8 @@ def SalvarPassoEleicao(passo_eleicao, horario):
         return jsonify(data)
     else:
         return jsonify(["Method Not Allowed"])
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(host="0.0.0.0", debug=True)
